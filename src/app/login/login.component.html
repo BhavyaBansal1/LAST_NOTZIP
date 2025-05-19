@@ -1,0 +1,32 @@
+<body>
+    <div class="login-card">
+        <div class="text-center">
+            <img [src]="logoPath" alt="{{ 'LOGIN.LOGO_ALT' | translate }}" class="logo" />
+        </div>
+        <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">{{ 'LOGIN.EMAIL_LABEL' | translate }}</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}" required
+                    email [(ngModel)]="email" #emailInput="ngModel" />
+                <!-- Show error if email is invalid format -->
+                <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger mt-1">
+                    {{ 'LOGIN.EMAIL_ERROR' | translate }}
+                </div>
+            </div>
+ 
+            <div class="mb-3">
+                <label for="password" class="form-label">{{ 'LOGIN.PASSWORD_LABEL' | translate }}</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}"
+                    required [(ngModel)]="password">
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">{{ 'LOGIN.BUTTON' | translate }}</button>
+        </form>
+ 
+        <p class="form-text mt-3">
+            {{ 'LOGIN.NO_ACCOUNT' | translate }}
+            <button class="btn btn-link text-success p-0" (click)="navigateToSignup()">{{ 'LOGIN.REGISTER' | translate }}</button>
+        </p>
+    </div>
+</body>
+ 

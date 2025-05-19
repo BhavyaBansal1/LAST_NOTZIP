@@ -1,0 +1,300 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(358deg, #aeffd2 0%, #c0eb70 100%);
+}
+
+.navbar-brand {
+  color: #2d6a4f; /* or any shade of green you prefer */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.navbar {
+  background-color: white;
+}
+
+.navbar .btn-rounded.logout-btn {
+  color: #dc3545; /* Red color for text and icon */
+ 
+}
+
+.form-card-container {
+  background: linear-gradient(358deg, #aeffd2 0%, #c0eb70 100%);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.form-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(245, 245, 245, 0.97));
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  color: #2d6a4f;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form field group */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-icon {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+.input-wrapper {
+  flex-grow: 1;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #2d6a4f;
+  margin-bottom: 5px;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 5px rgba(45, 106, 79, 0.5);
+}
+
+/* Submit Button */
+.btn-green {
+  background-color: #2d6a4f;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-green:hover {
+  background-color: #1b4332;
+  transform: translateY(-2px);
+}
+
+button[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.risk-buttons,
+.horizon-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  /* background-color: #2d6a4f; */
+  color: white;
+  transform: translateY(-2px);
+}
+
+.risk-buttons .btn.active,
+.horizon-buttons .btn.active {
+  color: white;
+}
+
+.risk-buttons .btn-outline-success.active {
+  background-color: #28a745;
+}
+
+.risk-buttons .btn-outline-warning.active {
+  background-color: #ffc107;
+}
+
+.risk-buttons .btn-outline-danger.active {
+  background-color: #dc3545;
+}
+
+.horizon-buttons .btn-outline-primary.active {
+  background-color: #007bff;
+}
+
+.horizon-buttons .btn-outline-secondary.active {
+  background-color: #6c757d;
+}
+
+.horizon-buttons .btn-outline-success.active {
+  background-color: #28a745;
+}
+
+.is-invalid .form-control,
+.is-invalid .form-select {
+  border-color: #dc3545;
+  background-color: #f8d7da;
+}
+
+.is-valid .form-control,
+.is-valid .form-select {
+  border-color: #28a745;
+  background-color: #d4edda;
+}
+
+button[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.no-scroll::-webkit-inner-spin-button,
+.no-scroll::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-control:focus {
+  border-color: #000;
+  box-shadow: 0 0 5px #000;
+}
+
+/* New styles for icon alignment in the form */
+.form-group .d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.form-group .form-label {
+  margin-left: 10px;
+}
+
+.form-group img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.goal-icon,
+.age-icon,
+.time-icon,
+.risk-icon,
+.amount-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.invalid-feedback {
+  display: block;
+  color: red;
+  font-size: 0.875rem;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
+.btn-rounded {
+  border-radius: 25px;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+}
+
+.form-select {
+  padding: 0.75rem 1rem;
+}
+
+.btn-group .btn {
+  padding: 0.75rem 1rem;
+}
+
+.btn-group .btn.active {
+  background-color: #198754;
+  color: white;
+}
+
+.custom-toggle-wrapper {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #198754; /* Matches btn-outline-primary */
+  border-radius: 25px;        /* Matches btn-rounded */
+  color: #198754; 
+  font-weight: 400;
+  height: 45px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: none; /* Remove hover effects */
+}
+
+.custom-toggle-wrapper:hover,
+.custom-toggle-wrapper:focus,
+.custom-toggle-wrapper:active {
+  background-color: transparent !important;
+  color: #198754 !important;
+  border-color: #198754 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.custom-toggle-wrapper .form-check-input {
+  width: 2rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.web2speech-toggle {
+  background-color: rgb(196, 193, 193); 
+  color: white;
+  border-color: rgb(196, 193, 193);
+}

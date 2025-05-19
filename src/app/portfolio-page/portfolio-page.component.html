@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg navbar-light px-4">
+  <a class="navbar-brand d-flex align-items-center">
+    <img src="assets/logo1.png" alt="{{ 'PORTFOLIO.LOGO_ALT' | translate }}" class="logo-img" />
+    {{ 'PORTFOLIO.BRAND_NAME' | translate }}
+  </a>
+  <div class="ms-auto d-flex gap-3">
+    <a routerLink="/home" class="btn btn-outline-success btn-rounded" (click)="home()">
+      {{ 'PORTFOLIO.HOME_BUTTON' | translate }}
+    </a>
+    <a routerLink="/input" class="btn btn-outline-success btn-rounded" (click)="input()">
+      {{ 'PORTFOLIO.INPUT_BUTTON' | translate }}
+    </a>
+    <a routerLink="/products" class="btn btn-outline-success btn-rounded" (click)="products()">
+      {{ 'PORTFOLIO.PRODUCTS_BUTTON' | translate }}
+    </a>
+    <a routerLink="/login" class="btn btn-rounded logout-btn d-flex align-items-center gap-2" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <!-- {{ 'PORTFOLIO.LOGOUT_BUTTON' | translate }} -->
+    </a>
+  </div>
+</nav>
+<div class="container">
+  <!-- <button (click)="downloadPDF()">Download PDF</button> -->
+
+  <h1 class="title">{{ 'PORTFOLIO.PAGE_TITLE' | translate }}</h1>
+ 
+  <!-- Asset Class Pie Chart -->
+  <div class="charts">
+    <div class="chart-box">
+      <canvas baseChart
+        [data]="{
+          labels: assetClassChartLabels,
+          datasets: [{ data: assetClassChartData, backgroundColor: assetClassChartColors }]
+        }"
+        [type]="pieChartType"
+        [options]="pieChartOptions">
+      </canvas>
+      <p class="chart-label">
+        {{ 'PORTFOLIO.TOTAL_INVESTMENT' | translate }} ₹{{ investmentAmount }}
+      </p>
+    </div>
+ 
+    <!-- Sub-Class Pie Chart -->
+    <div class="chart-box">
+      <canvas baseChart
+        [data]="{
+          labels: subCategoryLabels,
+          datasets: [{ data: subCategoryData, backgroundColor: subCategoryColors }]
+        }"
+        [type]="pieChartType"
+        [options]="pieChartOptions">
+      </canvas>
+      <p class="chart-label">
+        {{ 'PORTFOLIO.SUB_CATEGORY_DISTRIBUTION' | translate }} {{ selectedAssetClass }}
+      </p>
+    </div>
+  </div>
+ 
+  <!-- Asset Class Buttons -->
+  <section class="selector-section">
+    <h2>{{ 'PORTFOLIO.SELECT_ASSET_CLASS' | translate }}</h2>
+    <div class="asset-buttons">
+      <button
+        *ngFor="let asset of assetClassChartLabels"
+        (click)="onAssetSelected(asset)"
+        [ngClass]="{ selected: selectedAssetClass === asset }">
+        {{ asset | titlecase }} - {{ portfolioData.assets[asset]?.percentage }}%
+      </button>
+    </div>
+  </section>
+ 
+  <!-- Sub-Class Buttons -->
+  <section class="selector-section">
+    <h2>{{ 'PORTFOLIO.SELECT_SUB_CLASS' | translate }}</h2>
+    <div class="subclass-buttons">
+      <button
+        *ngFor="let subClass of subClasses"
+        (click)="onSubClassSelected(subClass.name)"
+        [ngClass]="{ selected: selectedSubClassName === subClass.name }">
+        {{ subClass.name }} - {{ subClass.percentage }}%
+      </button>
+    </div>
+  </section>
+ 
+  <!-- Products Table -->
+  <section class="products-section">
+    <h2>{{ 'PORTFOLIO.PRODUCTS_TITLE' | translate }}</h2>
+    <table class="product-table">
+    <thead>
+  <tr>
+    <th (click)="sortByColumn('product_name')">
+      {{ 'PORTFOLIO.PRODUCT_NAME' | translate }}
+      <span class="sort-icon" [class.active]="sortColumn === 'product_name'">
+        {{ sortColumn === 'product_name' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}
+      </span>
+    </th>
+    <th (click)="sortByColumn('annual_return')">
+      {{ 'PORTFOLIO.ANNUAL_RETURN' | translate }}
+      <span class="sort-icon" [class.active]="sortColumn === 'annual_return'">
+        {{ sortColumn === 'annual_return' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}
+      </span>
+    </th>
+  <th>{{ 'PORTFOLIO.ASSET_CLASS' | translate }}</th>
+          <th>{{ 'PORTFOLIO.SUB_ASSET_CLASS' | translate }}</th>
+          <th>{{ 'PORTFOLIO.LIQUIDITY' | translate }}</th>
+          <th>{{ 'PORTFOLIO.RISK_LEVEL' | translate }}</th>
+    <th (click)="sortByColumn('investmentAmount')">
+      {{ 'PORTFOLIO.INVESTMENT_AMOUNT' | translate }}
+      <span class="sort-icon" [class.active]="sortColumn === 'investmentAmount'">
+        {{ sortColumn === 'investmentAmount' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}
+      </span>
+    </th>
+  </tr>
+</thead>
+
+
+      <button class="hello " (click)="downloadExcel()">Download Data</button>
+
+      <tbody>
+        <tr *ngIf="filteredProducts.length === 0">
+          <td colspan="7" class="text-center">
+            {{ 'PORTFOLIO.NO_PRODUCTS_AVAILABLE' | translate }}
+          </td>
+        </tr>
+        <tr *ngFor="let product of filteredProducts">
+          <td>{{ product.product_name }}</td>
+          <td>{{ product.annual_return }}</td>
+          <td>{{ product.asset_class }}</td>
+          <td>{{ product.sub_asset_class }}</td>
+          <td>{{ product.liquidity }}</td>
+          <td>{{ product.risk_level || 'N/A' }}</td>
+          <td>{{ product.investmentAmount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+ 

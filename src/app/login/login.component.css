@@ -1,0 +1,103 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-image: url('./assets/image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1b4332;
+}
+
+.login-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+  backdrop-filter: blur(4px);
+ 
+ 
+}
+
+
+button[type="submit"] {
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%; /* Makes the button full width */
+}
+
+.login-card h2 {
+  font-weight: bold;
+  color: #2d6a4f;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.btn-green {
+  background-color: #2d6a4f;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+}
+
+.btn-green:hover {
+  background-color: #1b4332;
+}
+
+.form-text {
+  color: #3c4f4c;
+  text-align: center;
+  margin-top: 0.1rem; /* Adjust spacing */
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align items vertically */
+  gap: 5px; /* Add spacing between text and link */
+}
+
+.btn-link {
+  color: #2d6a4f; /* Green color for the link */
+  font-weight: bold;
+  text-decoration: none; /* Remove underline */
+  line-height: 1; /* Ensure consistent line height */
+}
+
+.btn-link:hover {
+  color: #1b4332; /* Darker green on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+.logo {
+  width:55px;
+  margin-bottom: 0.8rem;
+}
+
+.form-label {
+  color: #1b4332;
+}
+
+@media screen and (max-width: 576px) {
+  .login-card {
+    padding: 2rem 1rem;
+  }
+
+  .logo {
+    width: 50px;
+  }
+}
+  

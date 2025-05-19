@@ -1,0 +1,93 @@
+<div class="signup-wrapper">
+  <div class="signup-card">
+    <div class="text-center logo-heading">
+      <img [src]="logoPath" alt="{{ 'SIGNUP.LOGO_ALT' | translate }}" class="logo" />
+      <h2>{{ 'SIGNUP.TITLE' | translate }}</h2>
+    </div>
+ 
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">{{ 'SIGNUP.FIRST_NAME' | translate }}</label>
+        <input id="firstName" type="text" formControlName="firstName" class="form-control" />
+        <ng-container *ngIf="signupForm.get('firstName') as firstNameCtrl">
+          <div class="error" *ngIf="firstNameCtrl.touched && firstNameCtrl.errors">
+            <span *ngIf="firstNameCtrl.errors['required']">{{ 'SIGNUP.FIRST_NAME_REQUIRED' | translate }}</span>
+            <span *ngIf="firstNameCtrl.errors['pattern']">{{ 'SIGNUP.FIRST_NAME_PATTERN' | translate }}</span>
+          </div>
+        </ng-container>
+      </div>
+ 
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label for="lastName" class="form-label">{{ 'SIGNUP.LAST_NAME' | translate }}</label>
+        <input id="lastName" type="text" formControlName="lastName" class="form-control" />
+        <ng-container *ngIf="signupForm.get('lastName') as lastNameCtrl">
+          <div class="error" *ngIf="lastNameCtrl.touched && lastNameCtrl.errors">
+            <span *ngIf="lastNameCtrl.errors['required']">{{ 'SIGNUP.LAST_NAME_REQUIRED' | translate }}</span>
+            <span *ngIf="lastNameCtrl.errors['pattern']">{{ 'SIGNUP.LAST_NAME_PATTERN' | translate }}</span>
+          </div>
+        </ng-container>
+      </div>
+ 
+      <!-- Email -->
+      <!-- <div class="mb-3">
+        <label for="email" class="form-label">{{ 'SIGNUP.EMAIL' | translate }}</label>
+        <input id="email" type="email" formControlName="email" class="form-control" />
+        <ng-container *ngIf="signupForm.get('email') as emailCtrl">
+          <div class="error" *ngIf="emailCtrl.touched && emailCtrl.invalid">
+            {{ 'SIGNUP.EMAIL_INVALID' | translate }}
+          </div>
+        </ng-container>
+        <div class="error" *ngIf="emailExists">
+          {{ 'SIGNUP.EMAIL_EXISTS' | translate }}
+        </div>
+      </div> -->
+
+      <div class="mb-3">
+        <label for="email" class="form-label">{{ 'SIGNUP.EMAIL' | translate }}</label>
+        <input id="email" type="email" formControlName="email" class="form-control" />
+        <ng-container *ngIf="signupForm.get('email') as emailCtrl">
+          <div class="error" *ngIf="emailCtrl.touched && emailCtrl.errors">
+            <span *ngIf="emailCtrl.errors['required']">{{ 'SIGNUP.EMAIL_REQUIRED' | translate }}</span>
+            <span *ngIf="emailCtrl.errors['pattern']">{{ 'SIGNUP.EMAIL_INVALID' | translate }}</span>
+            <span *ngIf="emailCtrl.errors['invalidDomain']">Invalid email domain. Please use a valid domain.</span>
+          </div>
+        </ng-container>
+        <div class="error" *ngIf="emailExists">
+          {{ 'SIGNUP.EMAIL_EXISTS' | translate }}
+        </div>
+      </div>
+ 
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">{{ 'SIGNUP.PASSWORD' | translate }}</label>
+        <input id="password" type="password" formControlName="password" class="form-control" />
+        <ng-container *ngIf="signupForm.get('password') as passwordCtrl">
+          <div class="error" *ngIf="passwordCtrl.touched && passwordCtrl.invalid">
+            {{ 'SIGNUP.PASSWORD_REQUIREMENTS' | translate }}
+          </div>
+        </ng-container>
+      </div>
+ 
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">{{ 'SIGNUP.CONFIRM_PASSWORD' | translate }}</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control" />
+        <div class="error" *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched">
+          {{ 'SIGNUP.PASSWORD_MISMATCH' | translate }}
+        </div>
+      </div>
+ 
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-green" [disabled]="signupForm.invalid || isSubmitting">
+        {{ 'SIGNUP.SUBMIT' | translate }}
+      </button>
+    </form>
+ 
+    <p class="form-text">
+      <span>{{ 'SIGNUP.ALREADY_HAVE_ACCOUNT' | translate }}</span>
+      <button class="btn btn-link" (click)="navigateToLogin()">{{ 'SIGNUP.LOGIN' | translate }}</button>
+    </p>
+  </div>
+</div>

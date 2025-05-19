@@ -1,0 +1,196 @@
+.container { 
+  min-height: 100vh;
+  padding: 30px; 
+}
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+ .navbar-brand {
+  color: #2d6a4f;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.navbar-brand:hover {
+  color: #2d6a4f;
+  text-decoration: none;
+}
+
+.btn-rounded {
+  border-radius: 30px;
+  margin-top: 1rem;
+}
+
+.navbar .btn-rounded.logout-btn {
+  color: #dc3545; /* Red color for text and icon */
+
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.title {
+  text-align: center;
+  color: #064635;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.chart-box {
+  background: white;
+  width: 400px; 
+  height: auto; 
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-label {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.selector-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.asset-buttons,
+.subclass-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Global button styles for both asset and subclass buttons */
+button {
+  background: white;
+  border: 2px solid #064635;
+  color: #064635;
+  padding: 14px 28px; 
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px #999;
+  font-size: 1.1rem; 
+  margin: 6px; 
+}
+
+button:hover {
+  background-color: #7aa68c;
+  color: white;
+}
+
+/* button:active {
+  background-color: #1e8449;
+  transform: scale(0.98);
+} */
+
+/* Highlight the selected button */
+button.selected {
+  background-color: #7aa68c; /* Dark green */
+  color: white;
+  border-color: #064635;
+  box-shadow: none; /* Remove shadow for the selected button */
+  transform: scale(1); /* Prevent scaling on selection */
+}
+
+.products-section {
+  margin-top: 40px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.product-table th {
+  background-color: #064635;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.product-table tr:hover {
+  background-color: #d1f2eb;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-table td {
+  color: #34495e;
+}
+
+.product-table td:first-child {
+  font-weight: bold;
+  color: #2c3e50;
+}
+th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-icon {
+  margin-left: 6px;
+  font-size: 0.8em;
+  color: #aaa; /* default light grey */
+  transition: color 0.2s;
+}
+
+.sort-icon.active {
+  color: #000; /* darker for active column */
+}
+.hello{
+  color: #064635;
+  font-size: 1rem;
+  /* font-weight: bold; */
+  text-align: center;
+  /* margin-top: 20px; */
+  border: none;
+  background: none;
+  box-shadow: none
+  ;
+}

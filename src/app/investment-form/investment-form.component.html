@@ -1,0 +1,251 @@
+<!-- 
+          <div class="form-group mt-3">
+            <div class="d-flex align-items-center mb-1">
+              <img src="assets/time.jpeg" alt="Time Icon" class="me-2 icon-img" />
+              <label for="investmentHorizon" class="form-label mb-0">Investment Horizon</label>
+            </div>
+            <input
+              type="number"
+              id="investmentHorizon"
+              formControlName="investmentHorizon"
+              class="form-control"
+              placeholder="Enter investment horizon (1 - 30)"
+              min="1"
+              max="30"
+              (focus)="isWeb2SpeechEnabled ? speakText('Investment Horizon') : null"
+              (input)="isWeb2SpeechEnabled ? speakText('You entered investment horizon ' + investmentForm.get('investmentHorizon')?.value) : null"
+              [ngClass]="{'is-invalid': investmentForm.get('investmentHorizon')?.invalid && investmentForm.get('investmentHorizon')?.touched}">
+            <div *ngIf="investmentForm.get('investmentHorizon')?.invalid && (investmentForm.get('investmentHorizon')?.touched || investmentForm.get('investmentHorizon')?.dirty)" class="text-danger mt-1 small">
+              <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['required']">Investment horizon is required.</div>
+              <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['min']">Minimum investment horizon is 1 year.</div>
+              <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['max']">Maximum investment horizon is 30 years.</div>
+            </div>
+          </div> -->
+
+          <div class="form-card-container">
+            <nav class="navbar navbar-expand-lg navbar-light px-4">
+              <a class="navbar-brand d-flex align-items-center">
+                <img src="assets/logo1.png" alt="{{ 'INVESTMENT.LOGO_ALT' | translate }}" class="logo-img" />
+                {{ 'INVESTMENT.BRAND_NAME' | translate }}
+              </a>
+              <div class="ms-auto d-flex align-items-center gap-3">
+                <!-- Web2Speech Toggle -->
+                <div class="custom-toggle-wrapper d-flex align-items-center">
+                  <div class="form-check form-switch m-0">
+                    <input class="form-check-input web2speech-toggle" type="checkbox" id="web2SpeechToggle" [(ngModel)]="isWeb2SpeechEnabled" (change)="toggleWeb2Speech()">
+                  </div>
+                  <span class="ms-2">{{ 'INVESTMENT.WEB2SPEECH' | translate }}</span>
+                </div>
+             
+                <!-- Other buttons -->
+                <button class="btn btn-outline-success btn-rounded" (click)="home(); speakText('Home Button')">
+                  {{ 'INVESTMENT.HOME' | translate }}
+                </button>
+                <button class="btn btn-outline-success btn-rounded" (click)="products(); speakText('Products Button')">
+                  {{ 'INVESTMENT.PRODUCTS' | translate }}
+                </button>
+                <a routerLink="/login" class="btn btn-rounded logout-btn d-flex align-items-center gap-2" (click)="logout()">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <!-- {{ 'INVESTMENT.LOGOUT' | translate }} -->
+                </a>
+              </div>
+            </nav>
+           
+            <section class="pt-4 pb-5">
+              <div class="container">
+                <div class="form-card">
+                  <h2>{{ 'INVESTMENT.TITLE' | translate }}</h2>
+                  <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+           
+                    <!-- Goal -->
+                    <div class="form-group">
+                      <div class="d-flex align-items-center mb-1">
+                        <img src="assets/goal.jpeg" alt="{{ 'INVESTMENT.GOAL_ICON_ALT' | translate }}" class="me-2 icon-img" />
+                        <label for="goal" class="form-label mb-0">{{ 'INVESTMENT.GOAL' | translate }}</label>
+                      </div>
+                      <select
+                        id="goal"
+                        formControlName="goal"
+                        class="form-select"
+                        (focus)="isWeb2SpeechEnabled ? speakText('Goal') : null"
+                        (change)="isWeb2SpeechEnabled ? speakText('You selected ' + investmentForm.get('goal')?.value) : null"
+                        [ngClass]="{'is-invalid': investmentForm.get('goal')?.invalid && investmentForm.get('goal')?.touched}">
+                        <option value="" disabled>{{ 'INVESTMENT.SELECT_GOAL' | translate }}</option>
+                        <option value="Emergency Fund">{{ 'INVESTMENT.GOAL_EMERGENCY_FUND' | translate }}</option>
+                        <option value="Retirement">{{ 'INVESTMENT.GOAL_RETIREMENT' | translate }}</option>
+                        <option value="Wealth Accumulation">{{ 'INVESTMENT.GOAL_WEALTH_ACCUMULATION' | translate }}</option>
+                        <option value="Child's Education">{{ 'INVESTMENT.GOAL_CHILD_EDUCATION' | translate }}</option>
+                        <option value="Big Purchase">{{ 'INVESTMENT.GOAL_BIG_PURCHASE' | translate }}</option>
+                      </select>
+                      <div *ngIf="investmentForm.get('goal')?.invalid && investmentForm.get('goal')?.touched" class="invalid-feedback">
+                        {{ 'INVESTMENT.GOAL_REQUIRED' | translate }}
+                      </div>
+                    </div>
+           
+                    <!-- Age -->
+                    <div class="form-group mt-3">
+                      <div class="d-flex align-items-center mb-1">
+                        <img src="assets/age.jpeg" alt="{{ 'INVESTMENT.AGE_ICON_ALT' | translate }}" class="me-2 icon-img" />
+                        <label for="age" class="form-label mb-0">{{ 'INVESTMENT.AGE' | translate }}</label>
+                      </div>
+                      <input
+                        type="number"
+                        id="age"
+                        formControlName="age"
+                        class="form-control"
+                        placeholder="{{ 'INVESTMENT.AGE_PLACEHOLDER' | translate }}"
+                        min="18" max="100"
+                        (focus)="isWeb2SpeechEnabled ? speakText('Age') : null"
+                        (input)="isWeb2SpeechEnabled ? speakText('You entered age ' + investmentForm.get('age')?.value) : null"
+                        [ngClass]="{'is-invalid': investmentForm.get('age')?.invalid && investmentForm.get('age')?.touched}">
+                      <div *ngIf="investmentForm.get('age')?.invalid && (investmentForm.get('age')?.touched || investmentForm.get('age')?.dirty)" class="text-danger mt-1 small">
+                        <div *ngIf="investmentForm.get('age')?.errors?.['required']">{{ 'INVESTMENT.AGE_REQUIRED' | translate }}</div>
+                        <div *ngIf="investmentForm.get('age')?.errors?.['min']">{{ 'INVESTMENT.AGE_MIN' | translate }}</div>
+                        <div *ngIf="investmentForm.get('age')?.errors?.['max']">{{ 'INVESTMENT.AGE_MAX' | translate }}</div>
+                      </div>
+                    </div>
+           
+           
+           
+                 
+           
+          <!-- Investment Horizon -->
+          <!-- <div class="form-group mt-3">
+            <div class="d-flex align-items-center mb-1">
+              <img src="assets/time.jpeg" alt="{{ 'INVESTMENT.HORIZON_ICON_ALT' | translate }}" class="me-2 icon-img" />
+              <label class="form-label mb-0">{{ 'INVESTMENT.HORIZON_LABEL' | translate }}</label>
+            </div>
+            <div class="btn-group w-100" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="selectHorizon('Short'); isWeb2SpeechEnabled ? speakText(horizonShortSelected) : null"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Short'">
+                {{ 'INVESTMENT.HORIZON_SHORT' | translate }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="selectHorizon('Moderate'); isWeb2SpeechEnabled ? speakText(horizonModerateSelected) : null"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Moderate'">
+                {{ 'INVESTMENT.HORIZON_MODERATE' | translate }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="selectHorizon('Long'); isWeb2SpeechEnabled ? speakText(horizonLongSelected) : null"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Long'">
+                {{ 'INVESTMENT.HORIZON_LONG' | translate }}
+              </button>
+            </div>
+          </div> -->
+          <!-- <div class="form-group mt-3">
+  <div class="d-flex align-items-center mb-1">
+    <img src="assets/time.jpeg" alt="Time Icon" class="me-2 icon-img" />
+    <label for="investmentHorizon" class="form-label mb-0">{{ 'INVESTMENT.HORIZON_LABEL' | translate }}</label>
+  </div>
+  <input
+    type="number"
+    id="investmentHorizon"
+    formControlName="investmentHorizon"
+    class="form-control"
+    [placeholder]="'INVESTMENT.HORIZON_PLACEHOLDER' | translate"
+    min="1"
+    max="30"
+  (focus)="onInvestmentHorizonFocus()"
+  (input)="onInvestmentHorizonInput()"
+  [ngClass]="{'is-invalid': investmentForm.get('investmentHorizon')?.invalid && investmentForm.get('investmentHorizon')?.touched}">
+    <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['required']">{{ 'INVESTMENT.HORIZON_REQUIRED' | translate }}</div>
+    <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['min']">{{ 'INVESTMENT.HORIZON_MIN' | translate }}</div>
+    <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['max']">{{ 'INVESTMENT.HORIZON_MAX' | translate }}</div>
+  </div> -->
+
+    <div class="form-group mt-3">
+    <div class="d-flex align-items-center mb-1">
+      <img src="assets/time.jpeg" alt="{{ 'INVESTMENT.HORIZON_ICON_ALT' | translate }}" class="me-2 icon-img" />
+      <label for="investmentHorizon" class="form-label mb-0">{{ 'INVESTMENT.HORIZON_LABEL' | translate }}</label>
+    </div>
+    <input
+      type="number"
+      id="investmentHorizon"
+      formControlName="investmentHorizon"
+      class="form-control"
+      [placeholder]="'INVESTMENT.HORIZON_PLACEHOLDER' | translate"
+      min="1"
+      max="30"
+      (focus)="isWeb2SpeechEnabled ? speakText('Investment Horizon') : null"
+      (input)="onInvestmentHorizonInput()"
+      [ngClass]="{'is-invalid': investmentForm.get('investmentHorizon')?.invalid && investmentForm.get('investmentHorizon')?.touched}">
+    <div *ngIf="investmentForm.get('investmentHorizon')?.invalid && (investmentForm.get('investmentHorizon')?.touched || investmentForm.get('investmentHorizon')?.dirty)" class="text-danger mt-1 small">
+      <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['required']">{{ 'INVESTMENT.HORIZON_REQUIRED' | translate }}</div>
+      <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['min']">{{ 'INVESTMENT.HORIZON_MIN' | translate }}</div>
+      <div *ngIf="investmentForm.get('investmentHorizon')?.errors?.['max']">{{ 'INVESTMENT.HORIZON_MAX' | translate }}</div>
+    </div>
+  </div>
+           
+          <!-- Risk Tolerance -->
+          <div class="form-group mt-3">
+            <div class="d-flex align-items-center mb-1">
+              <img src="assets/risk.jpeg" alt="{{ 'INVESTMENT.RISK_ICON_ALT' | translate }}" class="me-2 icon-img" />
+              <label class="form-label mb-0">{{ 'INVESTMENT.RISK_LABEL' | translate }}</label>
+            </div>
+            <div class="btn-group w-100" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="selectRisk('Low'); isWeb2SpeechEnabled ? speakText(riskLowSelected) : null"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'Low'">
+                {{ 'INVESTMENT.RISK_LOW' | translate }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-warning"
+                (click)="selectRisk('Medium'); isWeb2SpeechEnabled ? speakText(riskMediumSelected) : null"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'Medium'">
+                {{ 'INVESTMENT.RISK_MEDIUM' | translate }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                (click)="selectRisk('High'); isWeb2SpeechEnabled ? speakText(riskHighSelected) : null"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'High'">
+                {{ 'INVESTMENT.RISK_HIGH' | translate }}
+              </button>
+            </div>
+          </div>
+           
+          <!-- Target Amount -->
+          <div class="form-group mt-3">
+            <div class="d-flex align-items-center mb-1">
+              <img src="assets/amount.jpeg" alt="{{ 'INVESTMENT.AMOUNT_ICON_ALT' | translate }}" class="me-2 icon-img" />
+              <label for="amount" class="form-label mb-0">{{ 'INVESTMENT.TARGET_AMOUNT_LABEL' | translate }}</label>
+            </div>
+            <input
+              type="number"
+              id="amount"
+              formControlName="targetAmount"
+              class="form-control"
+              placeholder="{{ 'INVESTMENT.TARGET_AMOUNT_PLACEHOLDER' | translate }}"
+              min="10000"
+              (focus)="isWeb2SpeechEnabled ? speakText(targetAmountLabel) : null"
+              (input)="isWeb2SpeechEnabled ? speakText(targetAmountEntered + investmentForm.get('targetAmount')?.value) : null"
+              [ngClass]="{'is-invalid': investmentForm.get('targetAmount')?.invalid && investmentForm.get('targetAmount')?.touched}">
+            <div *ngIf="investmentForm.get('targetAmount')?.invalid && investmentForm.get('targetAmount')?.touched" class="invalid-feedback">
+              <small *ngIf="investmentForm.get('targetAmount')?.errors?.['required']">{{ 'INVESTMENT.TARGET_AMOUNT_REQUIRED' | translate }}</small>
+              <small *ngIf="investmentForm.get('targetAmount')?.errors?.['min']">{{ 'INVESTMENT.TARGET_AMOUNT_MIN' | translate }}</small>
+              <small *ngIf="investmentForm.get('targetAmount')?.errors?.['max']">{{ 'INVESTMENT.TARGET_AMOUNT_MAX' | translate }}</small>
+            </div>
+          </div>
+           
+                    <!-- Submit -->
+                    <div class="form-group mt-4">
+                      <button type="submit" class="btn btn-success w-100" [disabled]="investmentForm.invalid" (click)="isWeb2SpeechEnabled ? speakText('Submit Button') : null">
+                        {{ 'INVESTMENT.SUBMIT' | translate }}
+                      </button>
+                    </div>
+           
+                  </form>
+                </div>
+              </div>
+            </section>
+          </div>

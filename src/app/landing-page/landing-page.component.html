@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-light px-4">
+  <a class="navbar-brand d-flex align-items-center">
+    <img src="assets/logo1.png" alt="{{ 'LANDING.LOGO_ALT' | translate }}" class="logo-img" />
+    {{ 'LANDING.BRAND_NAME' | translate }}
+  </a>
+ 
+  <div class="ms-auto d-flex gap-3">
+    <a routerLink="/products" class="btn btn-outline-success btn-rounded" (click)="products()">
+      {{ 'LANDING.PRODUCTS' | translate }}
+    </a>
+    <a routerLink="/login" class="btn btn-rounded logout-btn d-flex align-items-center gap-2" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <!-- {{ 'LANDING.LOGOUT' | translate }} -->
+    </a>
+  </div>
+</nav>
+ 
+<!-- Hero Section -->
+<section class="hero container-fluid py-5">
+  <div class="row align-items-center">
+    <!-- Left Side: Slogan and Button -->
+    <div class="col-md-6 px-5">
+      <h1 class="display-5 fw-bold">{{ 'LANDING.HERO_TITLE' | translate }}</h1>
+      <button class="btn btn-success btn-rounded" (click)="input()">
+        {{ 'LANDING.GET_STARTED' | translate }}
+      </button>
+    </div>
+ 
+    <!-- Right Side: Image -->
+    <div class="col-md-6 text-center">
+      <img src="assets/image1.png" alt="{{ 'LANDING.HERO_IMAGE_ALT' | translate }}" class="img-fluid" />
+    </div>
+  </div>
+</section>
+ 
+<!-- Key Features Carousel -->
+<section class="feature-section text-center">
+  <h2 class="mb-4">{{ 'LANDING.KEY_FEATURES_TITLE' | translate }}</h2>
+  <div id="projectCarousel" class="carousel slide container" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_1_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_1_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_2_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_2_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_3_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_3_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'LANDING.PREVIOUS' | translate }}</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'LANDING.NEXT' | translate }}</span>
+    </button>
+  </div>
+</section>

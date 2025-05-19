@@ -1,0 +1,61 @@
+
+<div class="products-page">
+  <nav class="custom-navbar">
+    <div class="navbar-container">
+      <a class="navbar-brand">
+        <img [src]="logoPath" alt="WisVest Logo" class="logo-img" />
+        WisVest
+      </a>
+      <div class="navbar-buttons">
+        <button class="home-button" (click)="home()">Home</button>
+        <a routerLink="/login" class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt" >  </i> 
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-container">
+    <h2 class="page-title">Our Investment Products</h2>
+
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Search by product name or asset class" [(ngModel)]="searchQuery" />
+    </div>
+
+    <div *ngIf="!loading && filteredProducts.length === 0" class="no-results">
+      <p>No products found</p>
+    </div>
+
+    <div *ngIf="loading" class="loading-spinner">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="products.length === 0 && !loading" class="no-results">
+      <p>No products available</p>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-wrapper" *ngFor="let product of filteredProducts">
+        <div class="product-card">
+          <h5>{{ product.productName }}</h5>
+          <p><strong>Asset Class:</strong> {{ product.assetClass }}</p>
+          <p><strong>Annual Return:</strong> {{ product.annualReturn }}%</p>
+          <p>
+            <strong>Risk Level:</strong>
+            <span class="badge"
+                  [ngClass]="{
+                    'badge-low': product.riskLevel === 'Low',
+                    'badge-moderate': product.riskLevel === 'Moderate',
+                    'badge-high': product.riskLevel === 'High'
+                  }">
+              {{ product.riskLevel }}
+            </span>
+          </p>
+          <p><strong>Description:</strong> {{ product.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
